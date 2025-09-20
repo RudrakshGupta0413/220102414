@@ -3,12 +3,14 @@ const validUrl = require("valid-url");
 const { log } = require("./logging");
 const urlData = require("./data");
 const crypto = require("crypto");
+const cors = require('cors');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 const BASE_URL = `http://localhost:${PORT}`;
 
 app.use(express.json());
+app.use(cors());
 
 function generateShortcode() {
   return crypto.randomBytes(4).toString("hex").substring(0, 6);
